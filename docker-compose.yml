@@ -1,0 +1,20 @@
+# service IRIS for Health 
+services:
+  iris:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE=$IMAGE_IRISHEALTH_EM
+    container_name: $CONTAINER_NAME
+    ports:
+      - $IRIS_MGR_PORT:1972 # IRIS internal port
+      - $IRIS_WEB_PORT:52773 # IRIS Management Portal port
+    environment:
+      - TZ=Europe/Paris
+      - ISC_DATA_DIRECTORY=$ISC_DATA_DIRECTORY
+      - ISC_CPF_MERGE_FILE=$ISC_CPF_MERGE_FILE
+      - API_CLIENT_ID=your-client-id
+      - API_CLIENT_SECRET=your-client-secret
+    volumes:
+      - ./irisdata:$ISC_DATA_DIRECTORY

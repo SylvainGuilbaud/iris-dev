@@ -1,0 +1,72 @@
+
+    set step="Install IPM"
+    set r=##class(%Net.HttpRequest).%New(),r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
+    zpm "repo -r -n registry -reset-defaults"
+    zpm "install webterminal"
+    zpm "install classexplorer" 
+    zpm "install dsw"
+    zpm "install swagger-ui"
+    zpm "install readonly-interoperability"
+    zpm "enable -map -globally"
+
+    zn "IRISAPP"
+
+    #; do $system.OBJ.Import("/home/irisowner/dev/src/%ZSTART.mac","ck")
+
+    #; common
+    #; do $system.OBJ.Import("/home/irisowner/dev/src/common.inc","ck")
+
+    #; set sc = $SYSTEM.OBJ.Import("/home/irisowner/dev/src","ck",,1)
+
+    do ##class(Ens.Util.Statistics).EnableSAMForNamespace()
+    do ##class(Ens.Util.Statistics).EnableStatsForProduction()
+
+    #; Credentials    
+    write ##class(Ens.Config.Credentials).SetCredential("ftp","app","youneverknow",1)
+    write ##class(Ens.Config.Credentials).SetCredential("PostgreSQL","postgres","postgres",1)
+
+    #; #; WorkFlow    
+    #; Do ##class(EnsLib.Workflow.RoleDefinition).CreateRole("ManualBloodPressureRole") 
+    #; Do ##class(EnsLib.Workflow.RoleDefinition).CreateRole("AutomaticBloodPressureRole") 
+    #; Do ##class(EnsLib.Workflow.RoleDefinition).CreateRole("cellule identito-vigilance")
+    #; do ##class(Workflow.Utils.Functions).UserExists("FakeDoctor","ManualBloodPressureRole") 
+    #; do ##class(Workflow.Utils.Functions).UserExists("Virgile","cellule identito-vigilance") 
+
+    #; #; Lookup table
+    #; do ##class(Ens.Util.LookupTable).%Import("/home/irisowner/dev/src/gbl/gender.xml")
+
+    #; set ^EnsPortal.SavedSearchD("Date de naissance")=$lb("",$lb("3",2,"",999,"","","","","","","","","","",$lb($lb($lb($lb($lb($lb("IF","=",19721201,"2.5.1:[PID:DateTimeOfBirth]",0))),0,"EnsLib.HL7.Message","VDocSegment"))),""),"SuperUser","2024-06-25 20:59:30.506","2024-06-25 21:00:34.822","SuperUser")
+    #; set ^EnsPortal.SavedSearchD("PRENOM et SEXE = Camille F")=$lb("",$lb(0,2,"",999,"","","","","","","","","","",$lb($lb($lb($lb($lb($lb("IF","=","Camille","2.5.1:[PID:PatientName().givenname]",0))),0,"EnsLib.HL7.Message","VDocSegment")),$lb($lb($lb($lb($lb("IF","=","F","2.5.1:ADT_A01:{PID:AdministrativeSex}",0))),0,"EnsLib.HL7.Message","VDocPath"))),""),"SuperUser","2024-07-11 16:12:27.559","2024-07-15 16:00:38.022","SuperUser")
+    #; set ^EnsPortal.SavedSearchD("Date de naissance 19xxx")=$lb("",$lb(3,2,"",999,"","","","","","","","","","",$lb($lb($lb($lb($lb($lb("IF","StartsWith","19","2.5.1:[PID:DateTimeOfBirth]",0))),0,"EnsLib.HL7.Message","VDocSegment"))),""),"SuperUser","2024-07-15 16:06:50.957","2024-07-15 16:06:50.957","SuperUser")
+
+    Set ^Ens.Debug("UtilEnsMessages","sql")=1
+
+    set ^Ens.Config.DefaultSettingsD("*","*","*","AlertOnError")=$lb("1","",0)
+    set ^Ens.Config.DefaultSettingsD("*","*","*","ArchiveIO")=$lb("1","",0)
+    set ^Ens.Config.DefaultSettingsD("*","*","*","LogTraceEvents")=$lb("0","",0)
+    set ^Ens.Config.DefaultSettingsD("*","*","*","RuleLogging")=$lb("a","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","*","MessageSchemaCategory")=$lb("2.3.1","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.Kafka.Service","Servers")=$lb("host.docker.internal:9092","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.Kafka.Service","TargetConfigNames")=$lb("Kafka router","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.SQL.Operation.GenericOperation","DSN")=$lb("iris","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.SQL.Operation.GenericOperation","JGService")=$lb("JDBC Gateway","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.SQL.Operation.GenericOperation","RequestClass")=$lb("EnsLib.Kafka.Message","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","*","EnsLib.SQL.Operation.GenericOperation","ResponseClass")=$lb("IRISHealth.msg.iris"_$c(2,1),0)
+    set ^Ens.Config.DefaultSettingsD("production.test","JDBC Gateway","*","Address")=$lb("127.0.0.1","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","JDBC Gateway","*","Port")=$lb("55555","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE","*","ArchivePath")=$lb("/data/HL7/archive","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE","*","FilePath")=$lb("/data/HL7/in","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE","*","WorkPath")=$lb("/data/HL7/work","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE validate","*","ArchivePath")=$lb("/data/HL7/archive","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE validate","*","FilePath")=$lb("/data/HL7/validate","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 FILE validate","*","WorkPath")=$lb("/data/HL7/work","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 HTTP","*","Port")=$lb("19001","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source HL7 TCP","*","Port")=$lb("2575","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source Kafka Consumer TOPIC APT-FROM-DXPLANNING","*","Topic")=$lb("APT-FROM-DXPLANNING-ENVOIE-TO-PTAH--RECEPTION","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source Kafka Consumer TOPIC APT-FROM-TRAKCARE","*","Topic")=$lb("APT-FROM-TRAKCARE-ENVOIE-TO-PTAH--RECEPTION","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","source Kafka Consumer TOPIC SURG","*","Topic")=$lb("SURG-FROM-SendingApp-SendingFac-TO-ReceivingApp--ReceivingFac","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","store gender","*","InputParameters")=$lb("*firstname,*value","",0)
+    set ^Ens.Config.DefaultSettingsD("production.test","store gender","*","Query")=$lb("insert into data.gender (firstname,value)  values  (?,?)","",0)
+
+    
+    halt
