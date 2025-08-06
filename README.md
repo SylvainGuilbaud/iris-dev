@@ -33,8 +33,6 @@ This script sets up the IRIS development environment by installing necessary pac
 To run this script, execute the following command in the terminal:
 
 ```bash
-docker compose up -d
-```bash
-docker compose up -d
+start.sh
 ```
 

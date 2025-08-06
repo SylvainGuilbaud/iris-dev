@@ -15,7 +15,7 @@ services:
       - TZ=Europe/Paris
       - ISC_DATA_DIRECTORY=$ISC_DATA_DIRECTORY
       - ISC_CPF_MERGE_FILE=$ISC_CPF_MERGE_FILE
-      - API_CLIENT_ID=your-client-id
-      - API_CLIENT_SECRET=your-client-secret
+      - API_CLIENT_ID=$API_CLIENT_ID
+      - API_CLIENT_SECRET=$API_CLIENT_SECRET
     volumes:
       - ./irisdata:$ISC_DATA_DIRECTORY
