@@ -7,6 +7,7 @@ services:
       args:
         - IMAGE=$IMAGE_IRISHEALTH_EM
     container_name: $CONTAINER_NAME
+    hostname: $CONTAINER_NAME
     ports:
       - $IRIS_MGR_PORT:1972 # IRIS internal port
       - $IRIS_WEB_PORT:52773 # IRIS Management Portal port
