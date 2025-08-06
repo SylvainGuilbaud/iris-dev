@@ -2,6 +2,7 @@ ROUTINE %ZSTART
   QUIT ; Prevents direct execution without a label
 
 SYSTEM ; Subroutine called at system startup
+  kill ^["IRISAPP"]Secrets
   Set ^["IRISAPP"]Secrets($System.Util.GetEnviron("API_CLIENT_ID")) = $System.Util.GetEnviron("API_CLIENT_SECRET")
   Set ^["IRISAPP"]Secrets("API_CLIENT_ID") = $System.Util.GetEnviron("API_CLIENT_ID")
   Set ^["IRISAPP"]Secrets("API_CLIENT_SECRET") = $System.Util.GetEnviron("API_CLIENT_SECRET")
