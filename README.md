@@ -28,11 +28,24 @@ This script sets up the IRIS development environment by installing necessary pac
 7. **Start IRIS Instance**
    - Start the IRIS instance and run the `iris.script` to execute the setup commands.
 
-## Usage
+## Usage on Linux / MacOS
 
-To run this script, execute the following command in the terminal:
+To run this script on Linux or MacOS, execute the following command in the terminal:
 
-```bash
-start.sh
+```bash on Linux or MacOS
+./start.sh
+```
+
+## Usage on Windows PowerShell
+
+To run this script on Windows with PowerShell, execute the following command in the terminal:
+```bash on Windows
+.\start.ps1
+```
+
+## Usage on Windows Command Prompt
+
+```cmd
+start.cmd
 ```
 
