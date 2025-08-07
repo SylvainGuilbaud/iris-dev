@@ -16,8 +16,8 @@ CreateMapPackage:Namespace=%ALL,Name=common,Database=USER
 CreateMapRoutine:Namespace=%ALL,Name=common,Database=USER
 CreateMapGlobal:Namespace=%ALL,Name=common,Database=USER
 
-CreateResource:Name=%DB_SECRETS_DATA,Description="SECRETS_DATA database"
-CreateDatabase:Name=SECRETS_DATA,Directory=/usr/irissys/mgr/SECRETS_DATA,Resource=%DB_SECRETS_DATA
+CreateResource:Name=%DB_SECRETS,Description="SECRETS database"
+CreateDatabase:Name=SECRETS,Directory=/usr/irissys/mgr/SECRETS,Resource=%DB_SECRETS
 CreateMapGlobal:Namespace=%ALL,Name=Secrets,Database=SECRETS
 
 CreateResource:Name=%DB_IRISAPP_DATA,Description="IRISAPP_DATA database"
