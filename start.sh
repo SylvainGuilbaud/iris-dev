@@ -43,6 +43,10 @@ fi
 # Check if the container is running
 if ! docker ps --filter "name=$CONTAINER_NAME" --filter "status=running" | grep -q "$CONTAINER_NAME"; then
     echo "Container '$CONTAINER_NAME' is not running. Starting the container..."
+    # Print the generated credentials to the console
+    # This is for debugging purposes. In production, you should not print sensitive information.
+    echo "API_CLIENT_ID: $API_CLIENT_ID"
+    echo "API_CLIENT_SECRET: $API_CLIENT_SECRET"
     docker compose up -d || {
         echo "Failed to start the container. Please check the Docker logs for more details."
         exit 1
