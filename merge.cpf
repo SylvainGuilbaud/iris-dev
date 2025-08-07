@@ -15,6 +15,9 @@ CreateNamespace:Name=%ALL,Globals=IRISTEMP,Routines=IRISTEMP
 CreateMapPackage:Namespace=%ALL,Name=common,Database=USER
 CreateMapRoutine:Namespace=%ALL,Name=common,Database=USER
 CreateMapGlobal:Namespace=%ALL,Name=common,Database=USER
+
+CreateResource:Name=%DB_SECRETS_DATA,Description="SECRETS_DATA database"
+CreateDatabase:Name=SECRETS_DATA,Directory=/usr/irissys/mgr/SECRETS_DATA,Resource=%DB_SECRETS_DATA
 CreateMapGlobal:Namespace=%ALL,Name=Secrets,Database=SECRETS
 
 CreateResource:Name=%DB_IRISAPP_DATA,Description="IRISAPP_DATA database"
@@ -22,9 +25,6 @@ CreateDatabase:Name=IRISAPP_DATA,Directory=/usr/irissys/mgr/IRISAPP_DATA,Resourc
 CreateResource:Name=%DB_IRISAPP_CODE,Description="IRISAPP_CODE database"
 CreateDatabase:Name=IRISAPP_CODE,Directory=/usr/irissys/mgr/IRISAPP_CODE,Resource=%DB_IRISAPP_CODE
 CreateNamespace:Name=IRISAPP,Globals=IRISAPP_DATA,Routines=IRISAPP_CODE,Interop=1
-
-CreateResource:Name=%DB_SECRETS_DATA,Description="SECRETS_DATA database"
-CreateDatabase:Name=SECRETS_DATA,Directory=/usr/irissys/mgr/SECRETS_DATA,Resource=%DB_SECRETS_DATA
 
 ModifyService:Name=%Service_CallIn,Enabled=1,AutheEnabled=48
 
