@@ -19,3 +19,4 @@ services:
       - API_CLIENT_SECRET=$API_CLIENT_SECRET
     volumes:
       - ./irisdata:$ISC_DATA_DIRECTORY
+      - .:/app

@@ -14,6 +14,7 @@ Execute:Namespace="%SYS",ClassName="%SQL.Statement",MethodName="%ExecDirect",Arg
 CreateNamespace:Name=%ALL,Globals=IRISTEMP,Routines=IRISTEMP
 CreateMapPackage:Namespace=%ALL,Name=common,Database=USER
 CreateMapRoutine:Namespace=%ALL,Name=common,Database=USER
+CreateMapGlobal:Namespace=%ALL,Name=common,Database=USER
 
 CreateResource:Name=%DB_IRISAPP_DATA,Description="IRISAPP_DATA database"
 CreateDatabase:Name=IRISAPP_DATA,Directory=/usr/irissys/mgr/IRISAPP_DATA,Resource=%DB_IRISAPP_DATA
