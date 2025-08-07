@@ -3,7 +3,8 @@ ROUTINE %ZSTART
 
 SYSTEM ; Subroutine called at system startup
   ; Initialize the IRIS application secrets
-  Set ^Secrets("LastUpdated") = $ZDATETIME($HOROLOG,3)
   Set ^Secrets("API_CLIENT_ID") = $System.Util.GetEnviron("API_CLIENT_ID")
+  Set ^Secrets("API_CLIENT_ID","LastUpdated") = $ZDATETIME($HOROLOG,3)
   Set ^Secrets("API_CLIENT_SECRET") = $System.Util.GetEnviron("API_CLIENT_SECRET")
+  Set ^Secrets("API_CLIENT_SECRET","LastUpdated") = $ZDATETIME($HOROLOG,3)
   QUIT
