@@ -3,8 +3,12 @@
 
 
 # Generate random API client credentials
-$API_CLIENT_ID = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 16 | % {[char]$_})
-$API_CLIENT_SECRET = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 128 | % {[char]$_})
+# $API_CLIENT_ID = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 16 | % {[char]$_})
+# $API_CLIENT_SECRET = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 128 | % {[char]$_})
+
+$API_CLIENT_ID = & openssl rand -hex 8
+$API_CLIENT_SECRET = & openssl rand -hex 64
+
 $env:API_CLIENT_ID = $API_CLIENT_ID
 $env:API_CLIENT_SECRET = $API_CLIENT_SECRET
 
