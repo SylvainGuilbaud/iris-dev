@@ -40,6 +40,10 @@ To run this script on Linux or MacOS, execute the following command in the termi
 
 To run this script on Windows with PowerShell, execute the following command in the terminal:
 ```bash on Windows
+pwsh ./start.ps1
+```
+
+```bash on Windows
 .\start.ps1
 ```
 
@@ -49,3 +53,6 @@ To run this script on Windows with PowerShell, execute the following command in 
 start.cmd
 ```
 
+```batch
+start.bat
+```
