@@ -16,7 +16,7 @@ CreateMapPackage:Namespace=%ALL,Name=common,Database=USER
 CreateMapRoutine:Namespace=%ALL,Name=common,Database=USER
 CreateMapGlobal:Namespace=%ALL,Name=common,Database=USER
 
-ModifyResource:Name=%DB_USER,PublicRead=1
+ModifyResource:Name=%DB_USER,PublicPermission=R
 
 CreateResource:Name=%DB_SECRETS,Description="SECRETS database"
 CreateDatabase:Name=SECRETS,Directory=/usr/irissys/mgr/SECRETS,Resource=%DB_SECRETS

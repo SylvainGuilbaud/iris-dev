@@ -7,6 +7,11 @@
         "docker-compose": {
             "service": "iris",
             "internalPort": 52773
+        },
+        "links": {
+            "terminal": "http://localhost:${port}/terminal/",
+            "class explorer": "http://localhost:${port}/ClassExplorer/",
+            "swagger-ui": "http://${host}:${port}/swagger-ui/index.html"
         }
     }
 }
