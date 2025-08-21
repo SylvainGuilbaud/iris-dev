@@ -5,7 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - IMAGE=$IMAGE_IRISHEALTH_EM
+        - IMAGE=$IMAGE_IRIS_EM
+        # - IMAGE=$IMAGE_IRISHEALTH_EM
     container_name: $CONTAINER_NAME
     hostname: $CONTAINER_NAME
     ports:
@@ -18,5 +19,5 @@ services:
       - API_CLIENT_ID=$API_CLIENT_ID
       - API_CLIENT_SECRET=$API_CLIENT_SECRET
     volumes:
-      - ./irisdata:$ISC_DATA_DIRECTORY
+      - ./$ISC_DATA_DIRECTORY:$ISC_DATA_DIRECTORY
       - .:/app

@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "iris-dev:IRISAPP",
+			"uri": "isfs://iris-dev:irisapp/healthshare/irisapp?csp"
+		},
+		{
+			"name": "iris-dev:USER",
+			"uri": "isfs://iris-dev:user/user?csp"
+		},
+		{
+			"name": "iris-dev (/csp/user)",
+			"uri": "isfs://iris-dev:user/csp/user?csp"
+		},
+		{
+			"name": "iris-dev (/csp/healthshare/irisapp)",
+			"uri": "isfs://iris-dev:irisapp/csp/healthshare/irisapp?csp"
+		},
+		{
+			"name": "iris-dev (/csp/healthshare/app2)",
+			"uri": "isfs://iris-dev:app2/csp/healthshare/app2?csp"
+		},
+		{
+			"name": "iris-dev (/csp/healthshare/irisapp) (read-only)",
+			"uri": "isfs://iris-dev:irisapp/csp/healthshare/irisapp?csp"
+		}
+	],
+	"settings": {}
+}
